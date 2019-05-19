@@ -1,0 +1,4 @@
+# ignoring target folder and binaries
+target
+*.class
+.idea
