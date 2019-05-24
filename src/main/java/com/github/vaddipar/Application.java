@@ -1,4 +1,4 @@
-package com.vaddipar.json;
+package com.github.vaddipar;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

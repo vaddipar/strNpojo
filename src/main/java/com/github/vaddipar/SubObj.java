@@ -1,4 +1,4 @@
-package com.vaddipar.json;
+package com.github.vaddipar;
 
 public class SubObj {
   private Integer[] sandeep;

@@ -1,4 +1,4 @@
-package com.vaddipar.json;
+package com.github.vaddipar;
 
 public class Sample {
   private String foo;

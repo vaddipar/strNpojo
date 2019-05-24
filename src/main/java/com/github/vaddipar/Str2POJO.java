@@ -1,6 +1,6 @@
-package com.vaddipar.json;
+package com.github.vaddipar;
 
-import com.vaddipar.json.utilities.ObjectGetters;
+import com.github.vaddipar.utilities.ObjectGetters;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;

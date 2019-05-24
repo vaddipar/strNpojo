@@ -1,4 +1,4 @@
-package com.vaddipar.json.utilities;
+package com.github.vaddipar.utilities;
 
 import java.util.ArrayList;
 
