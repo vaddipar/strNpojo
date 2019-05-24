@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Application {
   public static void main(String[] args) {
-    Str2POJO str2POJO = new Str2POJO();
+    StrNPOJO str2POJO = new StrNPOJO();
     String sampleStr = "";
     String fileName = "/Users/vaddipar/personal/repos/vaddipar/str2POJO/src/main/java/com/vaddipar/str2POJO/sample.str2POJO";
 

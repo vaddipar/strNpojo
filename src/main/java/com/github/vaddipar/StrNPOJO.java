@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Str2POJO {
+public class StrNPOJO {
 
   public Object convert(String srcStr, Class dstClass, AtomicInteger curIndex) throws Exception {
 
