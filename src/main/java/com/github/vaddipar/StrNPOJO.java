@@ -94,6 +94,9 @@ public class StrNPOJO {
     }
 
     // todo: add cases here to fail malformed JSON's
+    if (srcStr.charAt(curIndex.intValue()-1) != '}' || srcStr.charAt(curIndex.intValue()) != '}'){
+      throw new Exception("Malformed JSON");
+    }
 
     return retVal;
   }
