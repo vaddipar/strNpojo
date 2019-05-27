@@ -1,9 +1,9 @@
-package com.github.vaddipar.utilities;
+package com.github.vaddipar;
 
 import java.util.ArrayList;
 
-public class ObjectGetters {
-  public static Object getObject(String val, Class className) {
+class ObjectGetters {
+  Object getObject(String val, Class className) {
     Object retVal = null;
 
     if (className == Integer.class) {
@@ -18,7 +18,7 @@ public class ObjectGetters {
     return retVal;
   }
 
-  public static Object getObject(ArrayList<String> arrayList, Class baseType) {
+  Object getObject(ArrayList<String> arrayList, Class baseType) {
     Object attachment;
 
     if (baseType == Integer.class) {

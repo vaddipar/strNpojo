@@ -1,7 +1,5 @@
 package com.github.vaddipar;
 
-import com.github.vaddipar.utilities.ObjectGetters;
-
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -9,6 +7,11 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class StrNPOJO {
+
+  private ObjectGetters objectGetters;
+  public StrNPOJO(){
+    this.objectGetters = new ObjectGetters();
+  }
 
   public Object convert(String srcStr, Class dstClass, AtomicInteger curIndex) throws Exception {
 
@@ -51,7 +54,7 @@ public class StrNPOJO {
         if (!readingArray && chars.toString().length() != 0) {
           propertyDescriptor
               .getWriteMethod()
-              .invoke(retVal, ObjectGetters.getObject(val, typeHashMap.get(key)));
+              .invoke(retVal, this.objectGetters.getObject(val, typeHashMap.get(key)));
           chars = new StringBuilder();
         } else {
           arrayList.add(val);
@@ -76,7 +79,7 @@ public class StrNPOJO {
         arrayList.add(val);
 
         Class baseType = typeHashMap.get(key).getComponentType();
-        Object attachment = ObjectGetters.getObject(arrayList, baseType);
+        Object attachment = this.objectGetters.getObject(arrayList, baseType);
         propertyDescriptor.getWriteMethod().invoke(retVal, attachment);
 
       } else {
@@ -90,7 +93,7 @@ public class StrNPOJO {
     if (val.length() != 0) {
       propertyDescriptor
           .getWriteMethod()
-          .invoke(retVal, ObjectGetters.getObject(val, typeHashMap.get(key)));
+          .invoke(retVal, this.objectGetters.getObject(val, typeHashMap.get(key)));
     }
 
     return retVal;
