@@ -25,6 +25,7 @@ public class StrNPOJO {
     HashMap<String, Class> typeHashMap = new HashMap<>();
 
     Boolean ignoreSpaces = true, readingArray = false;
+    Integer curlyOpen=0, squareOpen=0;
 
     for (Field field : fields) {
       typeHashMap.put(field.getName(), field.getType());
