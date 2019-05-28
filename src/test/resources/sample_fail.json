@@ -1,0 +1,19 @@
+{
+  "foo": "sandeep srivastav",
+  "bar": 1,
+  "someFloat": 36.56,
+  "tOrF": true,
+  "strs": [
+    1,
+    1
+  ],
+  "someObj": {
+    "sandeep": [
+      23,
+      45
+    ,
+    "duck": {
+      "srivastav": 432
+    }
+  }
+}

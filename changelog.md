@@ -11,4 +11,4 @@
 * Reorder the code and move tests away from the main package.
 * Make the helper classes protected
 * added change log
-* Undo malformed JSON handling due to bugs.
+* Undo malformed JSON handling due to bugs. 

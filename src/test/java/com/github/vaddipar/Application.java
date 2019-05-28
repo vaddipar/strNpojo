@@ -10,7 +10,7 @@ public class Application {
   public static void main(String[] args) {
     StrNPOJO str2POJO = new StrNPOJO();
     String sampleStr = "";
-    String fileName = "/Users/vaddipar/personal/repos/vaddipar/strNpojo/src/test/resources/sample.json";
+    String fileName = "/Users/vaddipar/personal/repos/vaddipar/strNpojo/src/test/resources/sample_fail.json";
 
     try{
       sampleStr = new String(Files.readAllBytes(Paths.get(fileName)), "UTF-8");
@@ -21,7 +21,7 @@ public class Application {
     }
 
     try{
-      Sample retObject = (Sample) str2POJO.convert( sampleStr, Sample.class, new AtomicInteger(1));
+      Sample retObject = (Sample) str2POJO.convert( sampleStr, Sample.class, new AtomicInteger(0));
       System.out.println(retObject.getFoo());
       System.out.println(retObject.getBar());
       System.out.println(retObject.getSomeFloat());

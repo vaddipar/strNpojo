@@ -32,14 +32,20 @@ public class StrNPOJO {
 
     PropertyDescriptor propertyDescriptor = null;
 
-    while (curIndex.intValue() < srcStr.length() && srcStr.charAt(curIndex.intValue()) != '}') {
+    while (curIndex.intValue() < srcStr.length()) {
       Character curChar = srcStr.charAt(curIndex.intValue());
 
       if (curChar == '{') {
-        curIndex.set(curIndex.intValue() + 1);
-        Object subObj = convert(srcStr, typeHashMap.get(key), curIndex);
-        propertyDescriptor.getWriteMethod().invoke(retVal, subObj);
+        if (key.length() != 0){
+          Object subObj = convert(srcStr, typeHashMap.get(key), curIndex);
+          propertyDescriptor.getWriteMethod().invoke(retVal, subObj);
+        } else{
+          curlyOpen++;
+        }
 
+      } else if(curChar == '}'){
+        curlyOpen--;
+        break;
       } else if ((curChar == ' ') || (curChar == '\n')) {
         // ignore whitespaces everywhere except inside the key and value name.
         if (!ignoreSpaces) {
@@ -68,10 +74,12 @@ public class StrNPOJO {
         propertyDescriptor = new PropertyDescriptor(key, dstClass);
 
       } else if (curChar == '[') {
+        squareOpen++;
         arrayList = new ArrayList<>();
         readingArray = true;
 
       } else if (curChar == ']') {
+        squareOpen--;
         readingArray = false;
 
         val = new String(chars);
@@ -94,6 +102,12 @@ public class StrNPOJO {
       propertyDescriptor
           .getWriteMethod()
           .invoke(retVal, this.objectGetters.getObject(val, typeHashMap.get(key)));
+    }
+
+    if (curlyOpen != 0){
+      throw new Exception(String.format("Malformed JSON. Missing } at "+ curIndex.intValue()));
+    } else if (squareOpen != 0){
+      throw new Exception(String.format("Malformed JSON. Missing ] before end of string"));
     }
 
     return retVal;
