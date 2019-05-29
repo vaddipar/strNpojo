@@ -46,6 +46,7 @@ public class StrNPOJO {
           } else {
             curlyOpen++;
           }
+
           break;
         case '}':
           curlyOpen--;
@@ -63,11 +64,16 @@ public class StrNPOJO {
         case '\n':
           if (!ignoreSpaces){
             if (propertyDescriptor != null) chars.append(curChar);
-            else throw new Exception(String.format("Space not supported in JSON Keys"));
+            else throw new Exception(String.format("New Line not supported in JSON Keys"));
           }
+          break;
+        case '\t':
+          if (!ignoreSpaces) if (propertyDescriptor != null) chars.append(curChar);
+          else throw new Exception(String.format("Tab not supported in JSON Keys"));
           break;
         case '"':
           ignoreSpaces = !ignoreSpaces;
+
           break;
         case ',':
           val = new String(chars);
@@ -78,16 +84,19 @@ public class StrNPOJO {
             arrayList.add(val);
             chars = new StringBuilder();
           }
+
           break;
         case ':':
           key = new String(chars);
           chars = new StringBuilder();
           propertyDescriptor = new PropertyDescriptor(key, dstClass);
+
           break;
         case '[':
           squareOpen++;
           arrayList = new ArrayList<>();
           readingArray = true;
+
           break;
         case ']':
           squareOpen--;
@@ -98,6 +107,7 @@ public class StrNPOJO {
           arrayList.add(val);
           attachment =
               this.objectGetters.getObject(arrayList, typeHashMap.get(key).getComponentType());
+
           break;
         default:
           chars.append(curChar);
