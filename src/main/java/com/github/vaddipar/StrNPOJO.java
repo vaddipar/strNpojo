@@ -51,10 +51,20 @@ public class StrNPOJO {
           curlyOpen--;
           break scanner;
         case ' ':
-          if (!ignoreSpaces) chars.append(curChar);
+          if (!ignoreSpaces){
+            if (propertyDescriptor != null){
+              chars.append(curChar);
+            }
+            else{
+              throw new Exception(String.format("Space not supported in JSON Keys"));
+            }
+          }
           break;
         case '\n':
-          if (!ignoreSpaces) chars.append(curChar);
+          if (!ignoreSpaces){
+            if (propertyDescriptor != null) chars.append(curChar);
+            else throw new Exception(String.format("Space not supported in JSON Keys"));
+          }
           break;
         case '"':
           ignoreSpaces = !ignoreSpaces;
