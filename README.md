@@ -10,3 +10,5 @@ ToDo:
 1. See if its possible to read from a stream and convert to str2POJO
 1. Handle LARGE inputs
 1. POJO to String
+1. Handler all failure scenarios
+1. Print exactly where the formatting fails. Probably read GSON code and looks for hints on how to handle this.
