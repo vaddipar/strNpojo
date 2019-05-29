@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class StrNPOJO {
 
   private ObjectGetters objectGetters;
-  public StrNPOJO(){
+
+  public StrNPOJO() {
     this.objectGetters = new ObjectGetters();
   }
 
@@ -26,7 +27,7 @@ public class StrNPOJO {
     HashMap<String, Class> typeHashMap = new HashMap<>();
 
     Boolean ignoreSpaces = true, readingArray = false;
-    Integer curlyOpen=0, squareOpen=0;
+    Integer curlyOpen = 0, squareOpen = 0;
 
     for (Field field : fields) {
       typeHashMap.put(field.getName(), field.getType());
@@ -34,14 +35,15 @@ public class StrNPOJO {
 
     PropertyDescriptor propertyDescriptor = null;
 
-    scanner: while (curIndex.intValue() < srcStr.length()) {
+    scanner:
+    while (curIndex.intValue() < srcStr.length()) {
       Character curChar = srcStr.charAt(curIndex.intValue());
 
-      switch (curChar){
+      switch (curChar) {
         case '{':
-          if (key.length() != 0){
+          if (key.length() != 0) {
             attachment = convert(srcStr, typeHashMap.get(key), curIndex);
-          } else{
+          } else {
             curlyOpen++;
           }
           break;
@@ -76,7 +78,7 @@ public class StrNPOJO {
           squareOpen++;
           arrayList = new ArrayList<>();
           readingArray = true;
-          break ;
+          break;
         case ']':
           squareOpen--;
           readingArray = false;
@@ -84,14 +86,15 @@ public class StrNPOJO {
           chars = new StringBuilder();
 
           arrayList.add(val);
-          attachment = this.objectGetters.getObject(arrayList, typeHashMap.get(key).getComponentType());
+          attachment =
+              this.objectGetters.getObject(arrayList, typeHashMap.get(key).getComponentType());
           break;
         default:
           chars.append(curChar);
           break;
       }
 
-      if (attachment != null){
+      if (attachment != null) {
         propertyDescriptor.getWriteMethod().invoke(retVal, attachment);
         attachment = null;
       }
@@ -105,9 +108,9 @@ public class StrNPOJO {
           .invoke(retVal, this.objectGetters.getObject(val, typeHashMap.get(key)));
     }
 
-    if (curlyOpen != 0){
-      throw new Exception(String.format("Malformed JSON. Missing } at "+ curIndex.intValue()));
-    } else if (squareOpen != 0){
+    if (curlyOpen != 0) {
+      throw new Exception(String.format("Malformed JSON. Missing } at " + curIndex.intValue()));
+    } else if (squareOpen != 0) {
       throw new Exception(String.format("Malformed JSON. Missing ] before end of string"));
     }
 

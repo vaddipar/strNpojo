@@ -10,7 +10,7 @@ public class Application {
   public static void main(String[] args) {
     StrNPOJO str2POJO = new StrNPOJO();
     String sampleStr = "";
-    String fileName = "/Users/vaddipar/personal/repos/vaddipar/strNpojo/src/test/resources/sample_fail.json";
+    String fileName = "/Users/vaddipar/personal/repos/vaddipar/strNpojo/src/test/resources/sample.json";
 
     try{
       sampleStr = new String(Files.readAllBytes(Paths.get(fileName)), "UTF-8");
